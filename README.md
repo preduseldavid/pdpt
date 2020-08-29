@@ -75,5 +75,5 @@ curl -w "\n" -i -H "Accept: application/json" -H "Content-Type: application/json
 
 3. Enjoy!
 
-###Overview
+### Overview
 This project implements an API where you can get the country name and country phone prefix by country code. We use [JSON-RPC](https://www.jsonrpc.org/specification) protocol with a PHP server, and we also developed a simple MySQL Driver to handle the database operations. For example, for `RO` code you will get `Romania, +40` and so on. This functionality can be extended and there could also be added some other API functionalities in `app/Routes.php`. Currently there is only one route implemented, but there could be added more APIs.
