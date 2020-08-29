@@ -1,4 +1,4 @@
-##A simple PHP implementation of [JSON-RPC protocol](https://www.jsonrpc.org/) and a database driver ([MySQL](https://www.mysql.com/)) made with these words in mind: *efficient, secure, OOP, beautiful*
+## A simple PHP implementation of [JSON-RPC protocol](https://www.jsonrpc.org/) and a database driver ([MySQL](https://www.mysql.com/)) made with these words in mind: *efficient, secure, OOP, beautiful*
 
 ### PHP Client
 
