@@ -1,0 +1,27 @@
+{
+    "name": "dpredusel/pdpt",
+    "description": "Predusel David Practical Test for SMARTVALUE (Timisoara)",
+    "author": {
+        "name": "Predusel David",
+        "email": "preduseldavid@yahoo.com"
+    },
+    "require": {
+        "php": ">=7.0.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "PDPT\\App\\": "app",
+            "PDPT\\Driver\\": "src\\Driver",
+            "PDPT\\Http\\": "src\\Http",
+            "PDPT\\JsonRpc\\": "src\\JsonRpc"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PDPT\\JsonRpc\\Tests\\": "tests"
+        }
+    }
+}

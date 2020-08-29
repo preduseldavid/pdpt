@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <input
+      type="text"
+      id="countryCode"
+      maxlength="2"
+      placeholder="Country Code (RO, US, etc)"
+    />
+    <button onclick="sendRequest()">Get Country Prefix</button>
+  </body>
+</html>
+
+<script>
+  async function sendRequest() {
+    // prepare the request
+    const countryCode = document.getElementById("countryCode").value;
+    const requestData = {
+      jsonrpc: "2.0",
+      id: 1,
+      method: "getByCountryCode",
+      params: [countryCode],
+    };
+
+    // make the request
+    const response = await fetch("http://127.0.0.1:4321", {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      redirect: "follow",
+      referrerPolicy: "no-referrer",
+      body: JSON.stringify(requestData),
+    });
+
+    // process the response
+    const responseData = await response.json();
+    console.log(responseData);
+    if (responseData.error) {
+      alert(responseData.error.message);
+    } else {
+      alert(
+        `${responseData.result[0].name} phone prefix: ${responseData.result[0].prefix}`
+      );
+    }
+  }
+</script>
