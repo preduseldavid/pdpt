@@ -1,19 +1,19 @@
 <?php
 
-namespace PDPT\App;
+namespace JsonRpc\App;
 
-use PDPT\JsonRpc\Server;
-use PDPT\App\Routes;
-use PDPT\Http\Request;
-use PDPT\Http\Response;
+use JsonRpc\JsonRpc\Server;
+use JsonRpc\App\Routes;
+use JsonRpc\Http\Request;
+use JsonRpc\Http\Response;
 
 class Kernel
 {
     /** @var Routes */
-    private $routes;
+    private Routes $routes;
 
     /** @var Server */
-    private $server;
+    private Server $server;
 
     public function __construct()
     {
@@ -24,14 +24,14 @@ class Kernel
     /**
      * Handle the incoming request through JsonRPC Server.
      *
-     * @param PDPT\App\Request $request
+     * @param Request $request
      * Instance of the Request class.
      *
-     * @return PDPT\App\Response|null
+     * @return Response|null
      * Returns a response instance with the output of the handled request
      * Returns null when no response is necessary.
      */
-    public function handle(Request &$request)
+    public function handle(Request &$request): ?Response
     {
         $requestRawData = $request->getData();
         $responseRawData = $this->server->handle($requestRawData);

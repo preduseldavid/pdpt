@@ -1,9 +1,9 @@
 <?php
 
-namespace PDPT\JsonRpc\Tests;
+namespace JsonRpc\JsonRpc\Tests;
 
 use PHPUnit\Framework\TestCase;
-use PDPT\Driver\DatabaseMySQL as DBDriver;
+use JsonRpc\Driver\DatabaseMySQL as DBDriver;
 
 class DatabaseMySQLTest extends TestCase
 {

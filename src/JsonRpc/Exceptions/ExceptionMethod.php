@@ -1,8 +1,8 @@
 <?php
 
-namespace PDPT\JsonRpc\Exceptions;
+namespace JsonRpc\JsonRpc\Exceptions;
 
-use PDPT\JsonRpc\Responses\ResponseError;
+use JsonRpc\JsonRpc\Responses\ResponseError;
 
 class ExceptionMethod extends Exception
 {

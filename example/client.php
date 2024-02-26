@@ -1,7 +1,7 @@
 <?php
 
-use PDPT\JsonRpc\Client;
-use PDPT\Http\Request;
+use JsonRpc\JsonRpc\Client;
+use JsonRpc\Http\Request;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 

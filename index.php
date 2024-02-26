@@ -24,8 +24,8 @@ require_once __DIR__ . '/vendor/autoload.php';
 | and wonderful application we have prepared for them.
 |
 */
-use PDPT\App\Kernel;
-use PDPT\Http\Request;
+use JsonRpc\App\Kernel;
+use JsonRpc\Http\Request;
 
 $kernel = new Kernel();
 $request = Request::capture();

@@ -1,11 +1,11 @@
 <?php
 
-namespace PDPT\JsonRpc\Tests;
+namespace JsonRpc\JsonRpc\Tests;
 
 use PHPUnit\Framework\TestCase;
-use PDPT\JsonRpc\Client;
-use PDPT\JsonRpc\Responses\ResponseResult;
-use PDPT\JsonRpc\Responses\ResponseError;
+use JsonRpc\JsonRpc\Client;
+use JsonRpc\JsonRpc\Responses\ResponseResult;
+use JsonRpc\JsonRpc\Responses\ResponseError;
 
 class ClientTest extends TestCase
 {

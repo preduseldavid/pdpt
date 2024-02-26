@@ -1,6 +1,6 @@
 <?php
 
-namespace PDPT\Http;
+namespace JsonRpc\Http;
 
 /**
  * HTTP LAYER
@@ -12,10 +12,10 @@ namespace PDPT\Http;
 class Response
 {
     /** @var array */
-    private $headers;
+    private array $headers;
 
     /** @var string */
-    private $data;
+    private string $data;
 
     /**
      * @param string $data
@@ -36,10 +36,10 @@ class Response
      * @return void
      * No returning value is expected
      */
-    public function send()
+    public function send(): void
     {
         foreach ($this->headers as $header) {
-            header($header, true);
+            header($header);
         }
         echo $this->data;
     }

@@ -1,9 +1,9 @@
 <?php
 
-namespace PDPT\JsonRpc\Tests;
+namespace JsonRpc\JsonRpc\Tests;
 
 use PHPUnit\Framework\TestCase;
-use PDPT\JsonRpc\Server;
+use JsonRpc\JsonRpc\Server;
 
 class ServerTest extends TestCase
 {

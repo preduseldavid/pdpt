@@ -1,9 +1,10 @@
 <?php
 
-namespace PDPT\JsonRpc;
+namespace JsonRpc\JsonRpc;
 
-use PDPT\JsonRpc\Exceptions\Exception;
-use PDPT\JsonRpc\Responses\ResponseError;
+use Dotenv\Dotenv;
+use JsonRpc\JsonRpc\Exceptions\Exception;
+use JsonRpc\JsonRpc\Responses\ResponseError;
 
 /**
  * @link http://www.jsonrpc.org/specification JSON-RPC 2.0 Specifications
@@ -11,10 +12,10 @@ use PDPT\JsonRpc\Responses\ResponseError;
 class Server
 {
     /** @var string */
-    const VERSION = '2.0';
+    const string VERSION = '2.0';
 
     /** @var Core */
-    private $core;
+    private Core $core;
 
     /**
      * @param Core $core
@@ -22,13 +23,16 @@ class Server
     public function __construct(Core $core)
     {
         $this->core = $core;
+
+        $dotenv = Dotenv::createImmutable(__DIR__ . '/../..');
+        $dotenv->load();
     }
 
     /**
      * Processes a JSON-RPC 2.0 client request string and prepares a valid
      * response.
      *
-     * @param string $json
+     * @param  string  $json
      * Single request object, or an array of request objects, as a JSON string.
      *
      * @return null|string
@@ -38,7 +42,7 @@ class Server
      * @see Responses\ResponseResult
      * @see Responses\ResponseError
      */
-    public function handle($json)
+    public function handle(mixed $json): ?string
     {
         if (is_string($json)) {
             $input = json_decode($json, true);
@@ -74,7 +78,7 @@ class Server
      * Returns null if no response is necessary
      * Returns the JSON-RPC 2.0 server response as an array
      */
-    public function rawHandle($input)
+    public function rawHandle(mixed $input): ?array
     {
         if (is_array($input)) {
             $response = $this->processInput($input);
@@ -96,7 +100,7 @@ class Server
      * Returns an array of response/error objects when multiple queries are made.
      * Returns null when no response is necessary.
      */
-    private function processInput(array $input)
+    private function processInput(array $input): ?array
     {
         if (count($input) === 0) {
             return $this->requestError();
@@ -120,7 +124,7 @@ class Server
      * Returns an array of response/error objects when multiple queries are made.
      * Returns null when no response is necessary.
      */
-    private function processBatchRequests($input)
+    private function processBatchRequests(mixed $input): ?array
     {
         $replies = array();
 
@@ -149,7 +153,7 @@ class Server
      * Returns a response object or an error object.
      * Returns null when no response is necessary.
      */
-    private function processRequest($request)
+    private function processRequest(mixed $request): ?array
     {
         if (!is_array($request)) {
             return $this->requestError();
@@ -202,16 +206,16 @@ class Server
      * Client-supplied value that allows the client to associate the server response
      * with the original query.
      *
-     * @param string $method
+     * @param  string  $method
      * String value representing a method to invoke on the server.
      *
-     * @param array $arguments
+     * @param  array  $arguments
      * Array of arguments that will be passed to the method.
      *
      * @return array
      * Returns a response object or an error object.
      */
-    private function processQuery($id, $method, $arguments)
+    private function processQuery(mixed $id, string $method, array $arguments): array
     {
         try {
             $result = $this->core->execute($method, $arguments);
@@ -228,13 +232,13 @@ class Server
     /**
      * Processes a notification. No response is necessary.
      *
-     * @param string $method
+     * @param  string  $method
      * String value representing a method to invoke on the server.
      *
-     * @param array $arguments
+     * @param  array  $arguments
      * Array of arguments that will be passed to the method.
      */
-    private function processNotification($method, $arguments)
+    private function processNotification(string $method, array $arguments): void
     {
         try {
             $this->core->execute($method, $arguments);
@@ -249,7 +253,7 @@ class Server
      * @return array
      * Returns an error object.
      */
-    private function parseError()
+    private function parseError(): array
     {
         return $this->error(null, ResponseError::PARSE_ERROR, 'Parse error');
     }
@@ -258,14 +262,14 @@ class Server
      * Returns an error object explaining that the JSON input is not a valid
      * request object.
      *
-     * @param mixed $id
+     * @param  mixed|null  $id
      * Client-supplied value that allows the client to associate the server response
      * with the original query.
      *
      * @return array
      * Returns an error object.
      */
-    private function requestError($id = null)
+    private function requestError(mixed $id = null): array
     {
         return $this->error($id, ResponseError::INVALID_REQUEST, 'Invalid Request');
     }
@@ -277,10 +281,10 @@ class Server
      * Client-supplied value that allows the client to associate the server response
      * with the original query.
      *
-     * @param int $code
+     * @param  int  $code
      * Integer value representing the general type of error encountered.
      *
-     * @param string $message
+     * @param  string  $message
      * Concise description of the error (ideally a single sentence).
      *
      * @param null|boolean|integer|float|string|array $data
@@ -290,7 +294,7 @@ class Server
      * @return array
      * Returns an error object.
      */
-    private function error($id, $code, $message, $data = null)
+    private function error(mixed $id, int $code, string $message, mixed $data = null): array
     {
         $error = array(
             'code' => $code,
@@ -321,7 +325,7 @@ class Server
      * @return array
      * Returns a response object.
      */
-    private function response($id, $result)
+    private function response(mixed $id, mixed $result): array
     {
         return array(
             'jsonrpc' => self::VERSION,

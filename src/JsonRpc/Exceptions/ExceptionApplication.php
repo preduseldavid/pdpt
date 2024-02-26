@@ -1,15 +1,15 @@
 <?php
 
-namespace PDPT\JsonRpc\Exceptions;
+namespace JsonRpc\JsonRpc\Exceptions;
 
 class ExceptionApplication extends Exception
 {
     /**
-     * @param string $message
+     * @param  string  $message
      * Short description of the error that occurred. This message SHOULD
      * be limited to a single, concise sentence.
      *
-     * @param int $code
+     * @param  int  $code
      * Integer identifying the type of error that occurred. As the author of
      * a server-side application, you are free to define any error codes
      * that you find useful for your application--with one exception:
@@ -20,13 +20,13 @@ class ExceptionApplication extends Exception
      * as application-defined error codes! However, you can safely use any
      * integer from outside this reserved range.
      *
-     * @param null|boolean|integer|float|string|array $data
+     * @param  null|boolean|integer|float|string|array  $data
      * An optional primitive value that contains additional information about
      * the error. You're free to define the format of this data (e.g. you could
      * supply an array with detailed error information). Alternatively, you may
      * omit this field by providing a null value.
      */
-    public function __construct($message, $code, $data = null)
+    public function __construct(string $message, int $code, $data = null)
     {
         if (!self::isValidMessage($message)) {
             $message = '';
@@ -46,14 +46,14 @@ class ExceptionApplication extends Exception
     /**
      * Determines whether a value can be used as an error message.
      *
-     * @param string $input
+     * @param   $input
      * Short description of the error that occurred. This message SHOULD
      * be limited to a single, concise sentence.
      *
      * @return bool
      * Returns true iff the value can be used as an error message.
      */
-    private static function isValidMessage($input)
+    private static function isValidMessage($input): bool
     {
         return is_string($input);
     }
@@ -62,7 +62,7 @@ class ExceptionApplication extends Exception
      * Determines whether a value can be used as an application-defined error
      * code.
      *
-     * @param int $code
+     * @param  int  $code
      * Integer identifying the type of error that occurred. As the author of
      * a server-side application, you are free to define any error codes
      * that you find useful for your application.
@@ -77,7 +77,7 @@ class ExceptionApplication extends Exception
      * Returns true iff the value can be used as an application-defined
      * error code.
      */
-    private static function isValidCode($code)
+    private static function isValidCode($code): bool
     {
         return is_int($code) && (($code < -32768) || (-32000 < $code));
     }
@@ -86,7 +86,7 @@ class ExceptionApplication extends Exception
      * Determines whether a value can be used as the data value in an error
      * object.
      *
-     * @param null|boolean|integer|float|string|array $input
+     * @param  null|boolean|integer|float|string|array  $input
      * An optional primitive value that contains additional information about
      * the error. You're free to define the format of this data (e.g. you could
      * supply an array with detailed error information). Alternatively, you may
@@ -96,7 +96,7 @@ class ExceptionApplication extends Exception
      * Returns true if the value can be used as the data value in an error
      * object.
      */
-    private static function isValidData($input)
+    private static function isValidData($input): bool
     {
         $type = gettype($input);
 

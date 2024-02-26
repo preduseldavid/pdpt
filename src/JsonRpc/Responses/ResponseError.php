@@ -1,6 +1,6 @@
 <?php
 
-namespace PDPT\JsonRpc\Responses;
+namespace JsonRpc\JsonRpc\Responses;
 
 /**
  * A description of an error that occurred on the server
@@ -10,22 +10,22 @@ namespace PDPT\JsonRpc\Responses;
 class ResponseError extends Response
 {
     /* JSON-RPC protocol standard exceptions */
-    const PARSE_ERROR = -32700;
-    const INVALID_ARGUMENTS = -32602;
-    const INVALID_METHOD = -32601;
-    const INVALID_REQUEST = -32600;
+    const int PARSE_ERROR = -32700;
+    const int INVALID_ARGUMENTS = -32602;
+    const int INVALID_METHOD = -32601;
+    const int INVALID_REQUEST = -32600;
 
     /* JSON-RPC protocol application exceptions */
-    const DATABASE_ERROR = -32769;
+    const int DATABASE_ERROR = -32769;
 
     /** @var string */
-    private $message;
+    private string $message;
 
     /** @var int */
-    private $code;
+    private int $code;
 
     /** @var mixed */
-    private $data;
+    private mixed $data;
 
     /**
      * @param mixed $id
@@ -43,7 +43,7 @@ class ResponseError extends Response
      * An optional primitive value that contains additional information about
      * the error.
      */
-    public function __construct($id, string $message, int $code, $data = null)
+    public function __construct($id, string $message, int $code, mixed $data = null)
     {
         parent::__construct($id);
 

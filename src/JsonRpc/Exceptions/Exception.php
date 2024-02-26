@@ -1,6 +1,6 @@
 <?php
 
-namespace PDPT\JsonRpc\Exceptions;
+namespace JsonRpc\JsonRpc\Exceptions;
 
 use Exception as BaseException;
 
@@ -25,14 +25,14 @@ use Exception as BaseException;
 abstract class Exception extends BaseException
 {
     /** @var null|boolean|integer|float|string|array */
-    private $data;
+    private string|int|bool|array|null|float $data;
 
     /**
-     * @param string $message
+     * @param  string  $message
      * Short description of the error that occurred. This message SHOULD
      * be limited to a single, concise sentence.
      *
-     * @param int $code
+     * @param  int  $code
      * Integer identifying the type of error that occurred. This code MUST
      * follow the JSON-RPC 2.0 requirements for error codes:
      *
@@ -45,7 +45,7 @@ abstract class Exception extends BaseException
      * @link http://www.jsonrpc.org/specification#error_object
      *
      */
-    public function __construct($message, $code, $data = null)
+    public function __construct(string $message, int $code, $data = null)
     {
         parent::__construct($message, $code);
 
@@ -56,7 +56,7 @@ abstract class Exception extends BaseException
      * @return null|boolean|integer|float|string|array
      * Returns the (optional) data property of the error object.
      */
-    public function getData()
+    public function getData(): float|array|bool|int|string|null
     {
         return $this->data;
     }

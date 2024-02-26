@@ -1,6 +1,6 @@
 <?php
 
-namespace PDPT\JsonRpc\Exceptions;
+namespace JsonRpc\JsonRpc\Exceptions;
 
 class ExceptionImplementation extends Exception
 {
@@ -37,7 +37,7 @@ class ExceptionImplementation extends Exception
      * Returns true iff the value can be used as an implementation-defined
      * error code.
      */
-    private static function isValidCode($code)
+    private static function isValidCode($code): bool
     {
         return is_int($code) && (-32099 <= $code) && ($code <= -32000);
     }
@@ -56,7 +56,7 @@ class ExceptionImplementation extends Exception
      * Returns true iff the value can be used as the data value in an error
      * object.
      */
-    private static function isValidData($input)
+    private static function isValidData($input): bool
     {
         $type = gettype($input);
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace PDPT\Http;
+namespace JsonRpc\Http;
 
 /**
  * HTTP LAYER
@@ -11,14 +11,14 @@ namespace PDPT\Http;
  */
 class Request
 {
-    const HEADER_CONTENT_JSON = 'Content-Type: application/json';
-    const HEADER_ACCEPT_JSON = 'Accept: application/json';
+    const string HEADER_CONTENT_JSON = 'Content-Type: application/json';
+    const string HEADER_ACCEPT_JSON = 'Accept: application/json';
 
     /** @var array */
-    private $headers = [];
+    private array $headers = [];
 
     /** @var string */
-    private $data = '';
+    private string $data = '';
 
     /**
      * Get the request's data when the client makes a request.
@@ -37,16 +37,16 @@ class Request
     /**
      * Make a JSON HTTP request to a host.
      *
-     * @param string $url
+     * @param  string  $url
      * The url where we have to send this request
      *
-     * @param string $data
+     * @param  string  $data
      * Raw data that is already encoded and needs to be sent to the host
      *
      * @return string
      * Returns raw data (body)
      */
-    public static function sendJson($url, $data): string
+    public static function sendJson(string $url, string $data): string
     {
         $options = array(
           'http' => array(
@@ -56,8 +56,7 @@ class Request
             )
         );
         $context  = stream_context_create($options);
-        $result = file_get_contents($url, false, $context);
-        return $result;
+        return file_get_contents($url, false, $context);
     }
 
     /**

@@ -1,13 +1,13 @@
 <?php
 
-namespace PDPT\JsonRpc\Tests;
+namespace JsonRpc\JsonRpc\Tests;
 
-use PDPT\JsonRpc\Core;
-use PDPT\JsonRpc\Exceptions;
+use JsonRpc\JsonRpc\Core;
+use JsonRpc\JsonRpc\Exceptions;
 
 class Routes implements Core
 {
-    public function execute($method, $arguments)
+    public function execute(string $method, array $arguments)
     {
         switch ($method) {
             case 'subtract':

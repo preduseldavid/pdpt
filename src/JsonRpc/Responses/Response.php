@@ -1,17 +1,17 @@
 <?php
 
-namespace PDPT\JsonRpc\Responses;
+namespace JsonRpc\JsonRpc\Responses;
 
 abstract class Response
 {
-    private $id;
+    private int $id;
 
     public function __construct($id)
     {
         $this->id = $id;
     }
 
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace PDPT\JsonRpc\Responses;
+namespace JsonRpc\JsonRpc\Responses;
 
 /**
  * The result returned by the server
@@ -10,7 +10,7 @@ namespace PDPT\JsonRpc\Responses;
 class ResponseResult extends Response
 {
     /** @var mixed */
-    private $value;
+    private mixed $value;
 
     /**
      * @param mixed $id
@@ -20,7 +20,7 @@ class ResponseResult extends Response
      * @param mixed $value
      * The value returned by the server.
      */
-    public function __construct($id, $value)
+    public function __construct($id, mixed $value)
     {
         parent::__construct($id);
 
