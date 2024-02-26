@@ -1,9 +1,9 @@
 {
-    "name": "dpredusel/pdpt",
-    "description": "Predusel David Practical Test for SMARTVALUE (Timisoara)",
+    "name": "dpredusel/php-json-rpc",
+    "description": "A simple PHP implementation of JSON-RPC protocol",
     "author": {
-        "name": "Predusel David",
-        "email": "preduseldavid@yahoo.com"
+        "name": "David Predusel",
+        "email": "preduseldavid@gmail.com"
     },
     "require": {
         "php": ">=7.0.0"
